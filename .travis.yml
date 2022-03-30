@@ -5,3 +5,12 @@ services:
 script:
   - docker build -t adeagon/node .
   - docker images adeagon/node
+
+before_deploy:
+  - docker login -u adeagon -p houdiman1
+
+deploy:
+  provider: script
+  script: docker push adeagon/node
+  on:
+    branch: master
